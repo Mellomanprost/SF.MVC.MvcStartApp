@@ -1,4 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using MVC.MvcStartApp.Middlewares;
+using MVC.MvcStartApp.Models;
 
 namespace MVC.MvcStartApp
 {
@@ -7,6 +10,13 @@ namespace MVC.MvcStartApp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            // получаем строку подключения из файла конфигурации
+            string connection = builder.Configuration.GetConnectionString("DefaultConnection");
+
+            // добавляем контекст ApplicationContext в качестве сервиса в приложение
+            builder.Services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection));
+            builder.Services.AddControllersWithViews();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
