@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging.Abstractions;
 
-namespace MVC.MvcStartApp.Models.Db
+namespace MVC.MvcStartApp.Models.Db.Entities
 {
     /// <summary>
     /// модель пользователя в блоге

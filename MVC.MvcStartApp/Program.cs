@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using MVC.MvcStartApp.Middlewares;
 using MVC.MvcStartApp.Models;
+using MVC.MvcStartApp.Models.Db.Repositories;
 
 namespace MVC.MvcStartApp
 {
@@ -17,6 +18,8 @@ namespace MVC.MvcStartApp
             // добавляем контекст ApplicationContext в качестве сервиса в приложение
             builder.Services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection));
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddSingleton<IBlogRepository, BlogRepository>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
