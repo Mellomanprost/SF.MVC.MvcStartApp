@@ -2,10 +2,8 @@
 
 namespace MVC.MvcStartApp.Models.Db.Repositories
 {
-    public interface IBlogRepository
+    public interface IUserRepository
     {
-        Task AddUser (User user);
-
-        Task<User[]> GetUsers();
+        Task AddUser(User user);
     }
 }

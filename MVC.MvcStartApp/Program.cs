@@ -19,7 +19,7 @@ namespace MVC.MvcStartApp
             builder.Services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection));
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddSingleton<IBlogRepository, BlogRepository>();
+            builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
