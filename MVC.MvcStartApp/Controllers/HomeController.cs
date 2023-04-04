@@ -40,19 +40,7 @@ namespace MVC.MvcStartApp.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Authors()
-        {
-            var authors = await _repo.GetUsers();
-
-            Console.WriteLine("See all blog authors:");
-            foreach (var author in authors)
-                Console.WriteLine($"Author with id {author.Id}, named {author.FirstName}, joined {author.JoinDate}");
-
-            return View();
-        }
-
-
-        public IActionResult Privacy()
+            public IActionResult Privacy()
         {
             return View();
         }

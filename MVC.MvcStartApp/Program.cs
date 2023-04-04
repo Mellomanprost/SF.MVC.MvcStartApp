@@ -13,7 +13,7 @@ namespace MVC.MvcStartApp
             var builder = WebApplication.CreateBuilder(args);
 
             // получаем строку подключения из файла конфигурации
-            string connection = builder.Configuration.GetConnectionString("DefaultConnection");
+            string? connection = builder.Configuration.GetConnectionString("DefaultConnection");
 
             // добавляем контекст ApplicationContext в качестве сервиса в приложение
             builder.Services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection));
