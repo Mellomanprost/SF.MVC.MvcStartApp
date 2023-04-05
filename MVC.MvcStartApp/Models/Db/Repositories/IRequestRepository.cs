@@ -2,8 +2,8 @@
 
 namespace MVC.MvcStartApp.Models.Db.Repositories
 {
-    public interface IUserRepository
+    public interface IRequestRepository
     {
-        Task AddUser(User user);
+        Task AddRequest(Request request);
     }
 }
