@@ -5,9 +5,9 @@ namespace MVC.MvcStartApp.Models.Db.Repositories
 {
     public class RequestRepository : IRequestRepository
     {
-        private readonly RepositoryContext _context;
+        private readonly BlogContext _context;
 
-        public RequestRepository(RepositoryContext context)
+        public RequestRepository(BlogContext context)
         {
             _context = context;
         }

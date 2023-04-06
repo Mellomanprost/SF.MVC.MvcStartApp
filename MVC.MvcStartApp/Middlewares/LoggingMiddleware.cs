@@ -7,15 +7,15 @@ namespace MVC.MvcStartApp.Middlewares
     public class LoggingMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly IRequestRepository _repository;
+        private readonly IRequestRepository _request;
 
         /// <summary>
         ///  Middleware-компонент должен иметь конструктор, принимающий RequestDelegate
         /// </summary>
-        public LoggingMiddleware(RequestDelegate next, IRequestRepository repository)
+        public LoggingMiddleware(RequestDelegate next, IRequestRepository request)
         {
             _next = next;
-            _repository = repository;
+            _request = request;
         }
 
         /// <summary>
@@ -25,9 +25,28 @@ namespace MVC.MvcStartApp.Middlewares
         {
             // Для логирования данных о запросе используем свойста объекта HttpContext
             Console.WriteLine($"[{DateTime.Now}]: New request to http://{context.Request.Host.Value + context.Request.Path}");
-            await _repository.AddRequest(request);
+
+
+            string urlAdress = $"http://{context.Request.Host.Value + context.Request.Path}";
+
+            var newUrl = new Request()
+            {
+                Id = Guid.NewGuid(),
+                Date = DateTime.Now,
+                Url = urlAdress
+            };
+
+            await _request.AddRequest(newUrl);
+
+            //await LogFile(context);
+
             // Передача запроса далее по конвейеру
             await _next.Invoke(context);
+
+
+            //await _request.AddRequest(request);
+            // Передача запроса далее по конвейеру
+            //await _next.Invoke(context);
         }
     }
 }

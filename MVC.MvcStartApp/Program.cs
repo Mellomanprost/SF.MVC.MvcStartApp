@@ -20,6 +20,7 @@ namespace MVC.MvcStartApp
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddScoped<IBlogRepository, BlogRepository>();
+            builder.Services.AddScoped<IRequestRepository, RequestRepository>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
