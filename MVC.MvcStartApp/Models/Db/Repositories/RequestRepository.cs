@@ -5,17 +5,17 @@ namespace MVC.MvcStartApp.Models.Db.Repositories
 {
     public class RequestRepository : IRequestRepository
     {
-        private readonly RepositoryContext _context;
+        private readonly RequestContext _context;
 
-        public RequestRepository(RepositoryContext context)
+        public RequestRepository(RequestContext context)
         {
             _context = context;
         }
 
         public async Task AddRequest(Request request)
         {
-            request.Date = DateTime.Now;
-            request.Id = Guid.NewGuid();
+            //request.Date = DateTime.Now;  Вроде не нужно это
+            //request.Id = Guid.NewGuid();
 
             // Добавление запроса
             var entry = _context.Entry(request);

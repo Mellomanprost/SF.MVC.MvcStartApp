@@ -1,5 +1,7 @@
-﻿using MVC.MvcStartApp.Models.Db.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using MVC.MvcStartApp.Models.Db.Entities;
 using MVC.MvcStartApp.Models.Db.Repositories;
+using System.Xml.Linq;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace MVC.MvcStartApp.Middlewares
@@ -21,13 +23,28 @@ namespace MVC.MvcStartApp.Middlewares
         /// <summary>
         ///  Необходимо реализовать метод Invoke  или InvokeAsync
         /// </summary>
-        public async Task InvokeAsync(HttpContext context, Request request)
+        public async Task InvokeAsync(HttpContext context)
+        {
+            string requestUrl = $"http://{context.Request.Host.Value + context.Request.Path}";
+
+            var newRequest = new Request()
+            {
+                Id = Guid.NewGuid(),
+                Date = DateTime.Now,
+                Url = requestUrl
+            };
+
+            await _repository.AddRequest(newRequest);
+
+            LogConsole(context);
+            // Передача запроса далее по конвейеру
+            await _next.Invoke(context);
+        }
+
+        public void LogConsole(HttpContext context)
         {
             // Для логирования данных о запросе используем свойста объекта HttpContext
             Console.WriteLine($"[{DateTime.Now}]: New request to http://{context.Request.Host.Value + context.Request.Path}");
-            await _repository.AddRequest(request);
-            // Передача запроса далее по конвейеру
-            await _next.Invoke(context);
         }
     }
 }
