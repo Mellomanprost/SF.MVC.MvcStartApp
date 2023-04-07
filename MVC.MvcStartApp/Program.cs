@@ -22,7 +22,7 @@ namespace MVC.MvcStartApp
             builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 
             // добавляем RequestContext ApplicationContext в качестве сервиса в приложение
-            builder.Services.AddDbContext<RequestContext>(options => options.UseSqlServer(connection));
+            //builder.Services.AddDbContext<RequestContext>(options => options.UseSqlServer(connection));
             
             builder.Services.AddScoped<IRequestRepository, RequestRepository>();
 

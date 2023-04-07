@@ -14,8 +14,8 @@ namespace MVC.MvcStartApp.Models
         /// Ссылка на таблицу UserPosts
         public DbSet<UserPost> UserPosts { get; set; } = null!;
 
-        ///// Ссылка на таблицу Request
-        //public DbSet<Request> Requests { get; set; } = null!;
+        /// Ссылка на таблицу Request
+        public DbSet<Request> Requests { get; set; } = null!;
 
         // Логика взаимодействия с таблицами в БД
         public BlogContext(DbContextOptions<BlogContext> options) : base(options)
@@ -23,10 +23,10 @@ namespace MVC.MvcStartApp.Models
             Database.EnsureCreated();
         }
 
-        //protected override void OnModelCreating(ModelBuilder builder)
-        //{
-        //    builder.Entity<Request>().ToTable("Requests");
-        //}
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<Request>().ToTable("Requests");
+        }
 
     }
 }
