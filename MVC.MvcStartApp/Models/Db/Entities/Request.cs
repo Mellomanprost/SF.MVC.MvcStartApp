@@ -2,6 +2,9 @@
 
 namespace MVC.MvcStartApp.Models.Db.Entities
 {
+    /// <summary>
+    /// модель запроса
+    /// </summary>
     [Table("Requests")]
     public class Request
     {

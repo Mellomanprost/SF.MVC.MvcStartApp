@@ -16,11 +16,10 @@ namespace MVC.MvcStartApp
             string? connection = builder.Configuration.GetConnectionString("DefaultConnection");
 
             // добавляем контекст ApplicationContext в качестве сервиса в приложение
-            builder.Services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection));
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection), ServiceLifetime.Singleton);
 
-            builder.Services.AddScoped<IBlogRepository, BlogRepository>();
-            builder.Services.AddScoped<IRequestRepository, RequestRepository>();
+            builder.Services.AddSingleton<IBlogRepository, BlogRepository>();
+            builder.Services.AddSingleton<IRequestRepository, RequestRepository>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();

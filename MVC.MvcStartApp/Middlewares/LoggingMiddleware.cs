@@ -21,11 +21,10 @@ namespace MVC.MvcStartApp.Middlewares
         /// <summary>
         ///  Необходимо реализовать метод Invoke  или InvokeAsync
         /// </summary>
-        public async Task InvokeAsync(HttpContext context, Request request)
+        public async Task InvokeAsync(HttpContext context)
         {
             // Для логирования данных о запросе используем свойста объекта HttpContext
             Console.WriteLine($"[{DateTime.Now}]: New request to http://{context.Request.Host.Value + context.Request.Path}");
-
 
             string urlAdress = $"http://{context.Request.Host.Value + context.Request.Path}";
 
@@ -36,17 +35,11 @@ namespace MVC.MvcStartApp.Middlewares
                 Url = urlAdress
             };
 
+            // Добавление url в бд
             await _request.AddRequest(newUrl);
-
-            //await LogFile(context);
 
             // Передача запроса далее по конвейеру
             await _next.Invoke(context);
-
-
-            //await _request.AddRequest(request);
-            // Передача запроса далее по конвейеру
-            //await _next.Invoke(context);
         }
     }
 }

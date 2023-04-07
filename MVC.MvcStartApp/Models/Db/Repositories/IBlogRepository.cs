@@ -4,7 +4,7 @@ namespace MVC.MvcStartApp.Models.Db.Repositories
 {
     public interface IBlogRepository
     {
-        Task AddUser (User user);
+        Task AddUser(User user);
 
         Task<User[]> GetUsers();
     }
