@@ -12,7 +12,6 @@ namespace MVC.MvcStartApp.Controllers
         private readonly IBlogRepository _repo;
         private readonly ILogger<HomeController> _logger;
 
-
         public HomeController(ILogger<HomeController> logger, IBlogRepository repo)
         {
             _logger = logger;
@@ -35,6 +34,5 @@ namespace MVC.MvcStartApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
     }
 }
